@@ -1,0 +1,36 @@
+---
+- name: My task
+  hosts: all
+  tasks:
+     - name: Leaving a mark
+       command: "touch /tmp/ansible_was_here"
+     - name: say hi
+       command: 'echo "hi"'
+- name: My Name Play2
+  hosts: all
+  tasks: 
+    - name: Removing a mark
+      command: "rm /tmp/ansible_was_here"
+    - name: Leaving a new mark
+      command: "touch /tmp/ansible_was_not_here"
+- name: My Name Play3
+  hosts: all
+  tasks: 
+    - community.general.homebrew:
+        name: postgres
+        state: present
+- name: Play4
+  hosts: all
+  tasks:
+    - name: Prints various ansible facts
+      debug:
+        msg: The default IPv4 address of {{ ansible_fqdn }} is {{ ansible_default_ipv4.address }}
+- name: Installs a package and prints the result
+  hosts: all
+  tasks:
+    - community.general.homebrew:
+        name: etcd
+        state: present
+      register: install_result
+    - debug: var=install_result
+
