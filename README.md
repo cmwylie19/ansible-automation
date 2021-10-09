@@ -56,3 +56,13 @@ localhost | SUCCESS => {
     "changed": false
 }
 ```
+
+## Add Public Key to vagrant
+```
+ssh-copy-id -i ~/.ssh/id_rsa.pub -p 2222 vagrant@localhost
+```
+
+## Connect to vagrant
+```
+ssh -p '2222' 'vagrant@localhost'
+```

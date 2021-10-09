@@ -1,0 +1,43 @@
+---
+- hosts: all
+  pre_tasks:
+    - shell: echo "start"
+      register: start_output
+    - debug:
+        msg: 'echo {{ start_output}} '
+  # become: yes
+  vars:
+    age: 33
+  tasks:
+    - name: Include Variables
+      include_vars: ../vars/variables.yaml
+    - name: Say Age
+      command: echo 'you are {{ age }} years old'
+      register: hi_output
+    - debug: var=hi_output
+    - name: Ensure the webserver is reachable
+      uri:
+        url: http://freshlist.us
+        status_code: 200
+    - name: Say Hello
+      command: echo 'you are {{ name }}'
+      register: name_output
+    - debug: var=name_output
+    - debug:
+        msg: "System {{ inventory_hostname }} has uuid {{ ansible_product_uuid }}"
+    - shell: /usr/bin/uptime
+      register: result
+    - debug: 
+        msg: "Uptime is {{ result }}."
+  post_tasks:
+    - shell: echo "done"
+      register: output
+    - debug:
+        msg: 'echo {{ output}} '
+  #   - name: ensure ntpd is at the latest version
+  #     yum: pkg=nginx state=latest
+  #     notify:
+  #     - restart ngix
+  # handlers:
+  #   - name: restart nginx
+  #     service: name=nginx state=restarted
