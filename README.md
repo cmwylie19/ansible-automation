@@ -66,3 +66,35 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub -p 2222 vagrant@localhost
 ```
 ssh -p '2222' 'vagrant@localhost'
 ```
+
+
+### Resources
+- https://faun.pub/automation-deploying-an-app-in-gke-using-ansible-4b6687967ac3
+
+
+### Init Roles Directory
+```
+ansible-galaxy init roles/app-tier
+```
+
+### Encrypt with ANsible Vault
+```
+# Encrypt 
+ansible-cault encrypt secret.yaml
+
+ansible-vault create --vault-password-file=vault-pass secret.yml
+
+ansible-vault view secret1.yml
+
+ansible-vault edit secret.yml
+
+# Change password
+ansible-vault rekey secret.yml
+
+ansible-vault decrypt secret1.yml --output=secret1-decrypted.yml
+
+ansible-playbook --ask-vault-pass site.yml
+
+ansible-playbook --vault-password-file=vault-pass site.yml
+
+```

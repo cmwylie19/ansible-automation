@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cloud.google.com/neg: '{"ingress":true}'
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app":"rest-image"},"name":"rest-image","namespace":"default"},"spec":{"ports":[{"name":"http","port":8080,"protocol":"TCP","targetPort":8080}],"selector":{"app":"rest-image"}}}
+  creationTimestamp: "2021-10-05T22:21:35Z"
+  labels:
+    app: rest-image
+  name: rest-image
+  namespace: default
+  resourceVersion: "14437529"
+  uid: cee0d54e-05f7-4895-a261-d4f5d3d62f59
+spec:
+  clusterIP: 10.84.13.122
+  clusterIPs:
+  - 10.84.13.122
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: rest-image
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

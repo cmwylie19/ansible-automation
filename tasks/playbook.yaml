@@ -33,4 +33,12 @@
         state: present
       register: install_result
     - debug: var=install_result
-
+- name: Copy file with owner and permissions
+  hosts: all
+  tasks:
+    - ansible.builtin.copy:
+        src: /Users/cmwylie19/Public/ansible-practice/files/helloworld.js
+        dest: /tmp/helloworld.js
+        owner: cmwylie19
+        # group: foo
+        mode: '0644'
