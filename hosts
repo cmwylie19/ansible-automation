@@ -8,3 +8,6 @@ localhost
 
 [vm:vars]
 ansible_user='vagrant'
+
+[all:vars]
+gretting='hello'
